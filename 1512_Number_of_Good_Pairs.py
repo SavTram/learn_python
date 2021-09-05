@@ -7,9 +7,9 @@ class Solution(object):
                 di[i] += 1
             else:
                 di[i] = 1
-        list = []
+        pair = 0
         for i in di:
-            x= di[i]
-            value = x * (x-1) // 2
-            list.append(value)
-        return sum(list)
+            value = di[i] * (di[i] - 1) // 2
+            pair += value
+        return pair
+    
