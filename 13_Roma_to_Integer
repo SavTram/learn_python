@@ -1,0 +1,14 @@
+class Solution(object):
+    def romanToInt(self, s):
+        di = {"I": 1,"V": 5,"X": 10,"L": 50,"C": 100,"D": 500,"M": 1000}
+        new = s[::-1]
+        
+        result = di[new[0]]
+        for i in range(0,len(new)-1):
+           
+            if di[new[i]] <= di[new[i+1]]:
+                result +=di[new[i+1]]
+            else :
+                result -=di[new[i+1]]
+            
+        return result
