@@ -1,0 +1,12 @@
+class Solution(object):
+    def isValid(self, s):
+        di = {"(": ")", "{": "}", "[" :"]"}
+        stack = []
+        for t in s:
+            if str(t) in di:
+                stack.append(t)
+            elif len(stack) == 0 or di[stack.pop()] != t:
+                return False
+        return len(stack) ==0
+            
+                
