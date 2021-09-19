@@ -1,0 +1,15 @@
+import queue
+def deckRevealedIncreasing(deck):
+    result = [None] * len(deck)
+    que = queue.Queue() # store indexes
+    deck = sorted(deck) # a list of SORTED cards
+    for index in range(len(deck)):
+        que.put(index)
+    for i in range(len(deck)): # i: 0..n-1
+            # ? index
+        index = que.get()
+        result[index] = deck[i] # (index,i) = (0,0), (2,1), (4,2)
+        if not que.empty():
+            index = que.get()
+            que.put(index)
+    return result
