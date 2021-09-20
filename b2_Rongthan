@@ -1,0 +1,11 @@
+def rongthan(A,k):
+    
+    de = []
+    for i in range(len(A)):
+        if (i+1) % k ==0:
+           de.append(i)
+    v = sum(A)
+    for t in de:
+         v = v- A[t]
+    return v    
+
