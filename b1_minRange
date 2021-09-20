@@ -1,0 +1,13 @@
+from collections import deque
+def minRange(A,k):
+    de = deque([])
+    result = []
+    for i in range(len(A)):
+        while de and A[de[-1]] > A[i]:
+            de.pop()
+        de.append(i)
+        if (i - de[0] >= k) :
+            de.popleft()
+        if (i >= k-1) and len(de) >0:
+            result.append(A[de[0]])
+    return result
