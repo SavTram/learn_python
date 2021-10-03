@@ -1,51 +1,41 @@
 import math
-def ktr_snt(n):
-    if n %2==0:
+def snt(n):
+    if n%2==0 and n>2:
         return False
-    i = 3
-    while i>=3 and i< n/2:
-        if n% i ==0:
+    s= 3
+    while s>=3 and s<= n //2:
+        if n%s ==0:
             return False
-        i +=2
+        s +=2
     return True
-def nt_max(n):
-    for h in range(3,n+1):
-        if ktr_snt(h):
-            li.append(h)
-    return li[-1]
-def gannhat(a,b):
-    for m in range(a+1,b):
-        if ktr_snt(m) == True:
-            return False   
-    return True
-t= int(input('nhap t: '))
-li = []
+def snt_next(n):
+    i = n+1
+    while i >n:
+        if snt(i) == True:
+            li.append(i)
+            break
+        i +=1   
+t = int(input())
+l = []
 for i in range(t):
-    h = int(input())
-    li.append(h)
-for o in li:
-    stack = []
-    if o <6:
-        break
-    if o < 15 and o >= 6:
-        print(o - 6)
-    else:
-        b = int(math.sqrt(o))
-        for x in range(3, b+1):
-            t = ktr_snt(x)
-            if t == True:
-                stack.append(x)
-    if stack:
-        p = stack.pop() 
-        k = o // p
-        j = nt_max(k)
-        p = min(p,j)
-        j = max(p,j)
-        if p == j :
-            u = nt_max(p-2)
-            print(o - u* j)
-        if gannhat(p,j) == True and p != j:
-            print(o - p * j)
-        if gannhat(p,j) == False:
-            s = nt_max(j-2)
-            print(o - p*s)
+    n = int(input())
+    l.append(n)
+m = int(math.sqrt(max(l)))
+li = []
+for i in range(2, m +1):
+    if snt(i) == True:
+        li.append(i)
+snt_next(li[-1])
+k = []
+for o in l:
+    for index in range(len(li) -1):
+        j = li[index] * li[index + 1]
+        k.append(j)
+        if j > o: 
+            print(o - k[-2])
+            break
+        if j ==o:
+            print('0')
+            break
+
+
