@@ -35,3 +35,91 @@ for i in range(n):
 for j in range(0,n):
     print(a[j],end =' ')  
         
+
+# Làm thuần C++, hỉu nha
+//SẮP XẾP ĐIỂM
+
+#include <iostream>
+using namespace std;
+
+struct Student{
+  int id;
+  float score;
+};
+
+void merge(Student L[], int nL, Student R[], int nR, Student a[], int n){
+  int i, j, k;
+  i = j = k = 0;
+
+  while (i < nL && j < nR ){
+    if (L[i].score > R[j].score || (L[i].score == R[j].score && L[i].id < R[j].id)){
+      a[k] = L[i];
+      i++;
+      k++;
+    }
+    else{
+      a[k] = R[j];
+      j++;
+      k++;
+    }
+  }
+  
+  while (i < nL){
+    a[k] = L[i];
+    i++;
+    k++;
+  }
+  while (j < nR){
+    a[k]  = R[j];
+    j++;
+    k++;
+  }
+}
+
+void mergeSort(Student a[], int n){
+  if (n <= 1) return;
+  
+  Student L[500];
+  Student R[500];
+  int nL = n/2;
+  int nR = n-nL;
+  
+  for (int i = 0; i < nL; i++){
+    L[i] = a[i];
+  }
+  for (int i = 0; i < nR; i++){
+    R[i] = a[i + nL];
+  }
+  
+  mergeSort(L, nL);
+  mergeSort(R, nR);
+  merge(L, nL, R, nR, a, n);
+}
+
+int main()
+{
+// int L[] = {2, 4};
+// int R[] = {3, 5, 7};
+
+// int a[1000];
+
+// merge(L, 2, R, 3, a, 5);
+
+int n, k;
+cin >> n >> k;
+
+Student a[1000];
+for (int i = 0; i < n; i ++){
+  cin >> a[i].id >> a[i].score;
+}
+
+mergeSort(a,n);
+
+for(int i = 0; i < k; i++){
+  cout << a[i].id << endl;
+}  
+  
+  
+return 0;
+}
+        
